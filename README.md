@@ -20,12 +20,12 @@ already has all the necessary dependencies required for your application to run.
 2. You can use the aws ec2 instance to run it on aws. 
 3. Create an ec2 instance and follow along to run that instance inside your shell.
 4. ```sudo apt-get install docker.io``` to download it on your aws instance -- This will give you access to docker engine, daemon and cli
-4. Restrict permissions for your key: ```chmod 400 ~/<name of your instance key>.pem```
-5. Connect to your instance using its public dns: ```ssh -i "<name of your instance key>.pem" ubuntu@<your dns>```
-5. Try running ```docker ps```
-6. If permission denied for the user, modify user using ```sudo usermod -aG docker $USER```
-7. If the error persists, run ```newgrp docker```
-8. Repeat step 5.
+5. Restrict permissions for your key: ```chmod 400 ~/<name of your instance key>.pem```
+6. Connect to your instance using its public dns: ```ssh -i "<name of your instance key>.pem" ubuntu@<your dns>```
+7. Try running ```docker ps```
+8. If permission denied for the user, modify user using ```sudo usermod -aG docker $USER```
+9. If the error persists, run ```newgrp docker```
+10. Repeat step 5.
 
 ## Docker image
 1. Think of an image like a small chit you carry to your exam center.
