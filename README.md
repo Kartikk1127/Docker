@@ -67,3 +67,25 @@ When you run a container in detached mode, it does not block your screen. For in
 
 1. ```docker run hello-world``` : Runs without detached mode and hence opens up the log screen as soon as you run the command.
 2. ```docker run -d hello-world``` : Gives you a container id which you can use to view the logs willingly whenever needed.
+
+## Writing a Dockerfile
+1. Before moving on to write a dockerfile, we need to understand that the image of our application should include the source code, the dependencies and the libraries used and everything related to the image.
+2. This image becomes a box that includes everything related to the application and this is what becomes a container that runs for our application.
+3. Now, building a custom image requires us to write a Dockerfile and here, writing a dockerfile involves a set of instructions to build a docker image.
+4. Just like for you cooking Maggi involves a set of steps like getting a container -> boiling water -> putting maggi and masala -> cook. Finally you'll be having cooked maggi.
+5. Similarly, by following a set of instructions in a dockerfile it'll help you in building an image of your application.
+
+#### CMD VS ENTRYPOINT
+The CMD and ENTRYPOINT commands serve different purposes and have distinct behaviors.
+
+| CMD                                       |                ENTRYPOINT                 |
+|:------------------------------------------|:-----------------------------------------:|
+| sets default parameters for the container | sets primary parameters for the container |
+| can be overridden                         |           cannot be overridden            |
+| used for default parameters                         |           used for the main executable command            |
+
+### Building a custom image
+Run : ```docker build -t <image-name> .``` 
+1. -t tag is used to provide an image name
+2. **'.'** is used as a context. This means Docker will look for the Dockerfile in the current directory where the command is executed.
+
