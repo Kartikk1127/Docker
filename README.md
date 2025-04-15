@@ -37,7 +37,7 @@ already has all the necessary dependencies required for your application to run.
 7. In simple terms, an image is a blueprint that contains steps to run an application.
 8. Dockerfile is a list of instructions that helps in creating an image.
 
-### Building an image
+### Building and Running an image
 1. Create a dockerfile and list down all the instructions to build an image
 2. Now, build an image
 3. Run that image.
@@ -54,3 +54,16 @@ already has all the necessary dependencies required for your application to run.
    7. Run ```docker run <image-name>```
    8. You should see something like: 
       1. ![img_2.png](img_2.png)
+   9. You can also try running other images by pulling from dockerhub. Some examples include ```docker pull mysql```
+   10. In order to run an image in [detached](#detached-mode) mode, the run command should look like ```docker run -d <image-name>```
+
+**Note:** It's not necessary to build an image that already exists on docker hub. You can directly run the hello-world image by running ```docker run hello-world```.
+          Docker will first pull the image from the dockerhub and then run the container. 
+          You should see something like:
+1. ![img_3.png](img_3.png)
+
+### Detached Mode
+When you run a container in detached mode, it does not block your screen. For instance below are the commands to run an image in 2 ways:
+
+1. ```docker run hello-world``` : Runs without detached mode and hence opens up the log screen as soon as you run the command.
+2. ```docker run -d hello-world``` : Gives you a container id which you can use to view the logs willingly whenever needed.
