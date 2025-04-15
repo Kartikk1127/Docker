@@ -89,3 +89,7 @@ Run : ```docker build -t <image-name> .```
 1. -t tag is used to provide an image name
 2. **'.'** is used as a context. This means Docker will look for the Dockerfile in the current directory where the command is executed.
 
+**Important**
+Any code changes you make after creating a container will not be reflected inside the image and hence won't be visible when you run an old container or even restart/beat the shit out of it, it just won't work.
+Hence, making code changes require you to build a new image(no command change) and then run that new image(no command change).
+
