@@ -16,16 +16,17 @@ already has all the necessary dependencies required for your application to run.
 4. Docker Client/Desktop : Connects the apis to help visualize all the docker containers in a UI. Helps in communicating with the docker engine.
 
 ## Installing Docker
-1. You can download the docker desktop to run it locally on your machine
-2. You can use the aws ec2 instance to run it on aws. 
-3. Create an ec2 instance and follow along to run that instance inside your shell.
-4. ```sudo apt-get install docker.io``` to download it on your aws instance -- This will give you access to docker engine, daemon and cli
-5. Restrict permissions for your key: ```chmod 400 ~/<name of your instance key>.pem```
-6. Connect to your instance using its public dns: ```ssh -i "<name of your instance key>.pem" ubuntu@<your dns>```
-7. Try running ```docker ps```
-8. If permission denied for the user, modify user using ```sudo usermod -aG docker $USER```
-9. If the error persists, run ```newgrp docker```
-10. Repeat step 5.
+1. You can download the docker desktop to run it locally on your machine. 
+2. In order to do that, just download the docker desktop. You'll see a terminal option in the bottom right corner of the application. Open it and you are good to go.
+3. You can also use the aws ec2 instance to run it on aws. 
+4. Create an ec2 instance and follow along to run that instance inside your shell.
+5. ```sudo apt-get install docker.io``` to download it on your aws instance -- This will give you access to docker engine, daemon and cli
+6. Restrict permissions for your key: ```chmod 400 ~/<name of your instance key>.pem```
+7. Connect to your instance using its public dns: ```ssh -i "<name of your instance key>.pem" ubuntu@<your dns>```
+8. Try running ```docker ps```
+9. If permission denied for the user, modify user using ```sudo usermod -aG docker $USER```
+10. If the error persists, run ```newgrp docker```
+11. Repeat step 5.
 
 ## Docker image
 1. Think of an image like a small chit you carry to your exam center.
@@ -66,7 +67,7 @@ already has all the necessary dependencies required for your application to run.
 When you run a container in detached mode, it does not block your screen. For instance below are the commands to run an image in 2 ways:
 
 1. ```docker run hello-world``` : Runs without detached mode and hence opens up the log screen as soon as you run the command.
-2. ```docker run -d hello-world``` : Gives you a container id which you can use to view the logs willingly whenever needed.
+2. ```docker run -d hello-world``` : Gives you a container id which you can use to view the logs willingly whenever needed. Basically will run the container in the background.
 
 ## Writing a Dockerfile
 1. Before moving on to write a dockerfile, we need to understand that the image of our application should include the source code, the dependencies and the libraries used and everything related to the image.
@@ -89,7 +90,55 @@ Run : ```docker build -t <image-name> .```
 1. -t tag is used to provide an image name
 2. **'.'** is used as a context. This means Docker will look for the Dockerfile in the current directory where the command is executed.
 
-**Important**
+### Running a custom image
+Run: ```docker run <image-name>```
+1. If your application is a web application or a server, it requires a port to run.
+2. You can also give the port on which you want your application to run using **-p** tag.
+3. **-p** stands for publish. You need to publish the port.
+4. Let's say your application(host) runs on PORT 8080, and you also want the container to run on PORT 8080 hence you need to bind these ports using -p 8080(host):8080(container).
+5. In order to view logs for your container, run ```docker logs <container id>```.
+6. You can also view logs in real time, run ```docker logs -f <container id>``` OR ```docker attach <container id>```
+
+### Important commands
+1. _Stop a running container_ : ```docker stop <container id>```
+2. _Start a stopped container_ : ```docker start <container id>```
+3. _Restart a running container_ : ```docker restart <container id>```
+
+**Important** : 
 Any code changes you make after creating a container will not be reflected inside the image and hence won't be visible when you run an old container or even restart/beat the shit out of it, it just won't work.
 Hence, making code changes require you to build a new image(no command change) and then run that new image(no command change).
+
+### Example of a MySQL database
+Run : ```docker run -e MYSQL_ROOT_PASSWORD=<your preferred password> mysql```
+1. **-e** denotes environment.
+2. Mysql requires MYSQL_ROOT_PASSWORD to be passed as an environment and hence you can put it in the run command itself.
+3. You should see something like: 
+![img_4.png](img_4.png)
+4. Now, if you want to be able to execute commands inside the above container like mysql, you need to get a terminal for the same. Follow the below command:
+   1. ```docker exec -it <container id> bash```
+   2. **exec** stands for execute.
+   3. **-it** stands for interactive terminal
+   4. **bash** is basically used to start a bash shell inside your container.
+   5. After executing above command, you should see something like:
+   6. ![img_5.png](img_5.png)
+
+## Docker Networking
+Imagine you have 2 docker containers running on your machine. One container is of your Java application and another one is of a mysql database. Both are running in an isolated manner.
+As of now, they can't talk to each other. Hence, if you want to connect your application to the database it won't be that easy. Hence, the concept of docker networking comes into picture.
+If somehow, we are able to connect the java container to the database container we are good to go right? We need to build a network between both the containers.
+
+There are mainly 4 types of docker networks:
+1. Host
+2. Bridge(default)
+3. User defined Bridge
+4. None
+
+######  MACVLAN, IPVLAN, Overlay are also there but are outdated
+
+* If you want to see the networks present inside docker, run : ```docker network ls```
+* If you want to create one : ```docker network create <network name of your choice> -d bridge```
+* **-d** stands for driver.
+* **Bridge** is a driver.
+
+
 
