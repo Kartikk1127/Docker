@@ -140,5 +140,30 @@ There are mainly 4 types of docker networks:
 * **-d** stands for driver.
 * **Bridge** is a driver.
 
+### Exercise
+1. Let's create a network between two docker containers.
+2. For this, we will be connecting an application running on docker with a database running on docker.
+3. In order to connect them, we need to create a network between them right?
+4. Run the command: ```docker network create <your preferred name of the network> <network type(you can use one of the above 4 networks mentioned)>```
+5. ![img_6.png](img_6.png)
+6. Now run the mysql container(you have to give the network created above to the run command): [Go to the command](#example-of-a-mysql-database)
+7. Similarly, you also need to run your application inside a docker container.
+8. Important: If you don't have an application that simply connects to the database then create one. If you want a tutorial on the same you can connect with me on: [Twitter](https://x.com/devwithkartik)
+9. Once you have your application in place, make sure to run the container by giving the network similar to the mysql container. 
+10. A run command with the network given looks like : ```docker run -d --network <network name> <image name>```
+11. That's it. Your two containers are now connected. Congrats.
+
+Connect with me on twitter or linkedin for any doubts:
+[Twitter](https://x.com/devwithkartik)
+[Linkedin](https://www.linkedin.com/in/kartikey-srivastava-bb913423a/)
+
+**IMPORTANT**
+1. In case, your database container crashes, deleted by mistake you will lose all your data even if you restart your container within the same network.
+2. This can be dangerous right? Losing all your data? Well, we have a solution for that.
+3. This brings us to a new topic: _Docker Volumes and Storage_
+
+## Docker Volumes and Storage
+If we bind the container with the host, we could preserve the data.
+
 
 
