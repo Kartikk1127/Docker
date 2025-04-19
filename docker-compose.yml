@@ -23,8 +23,7 @@ services: # you can define all the containers you want to run
       start_period: 60s
 
   flask:
-    build:
-      context: . #since this is our own project, hence need to build
+    image: kartikcodes/two-tier-backend:latest #since now this image is present inside the docker hub
     container_name: two-tier-backend
     ports:
       - "5000:5000" #runs on this port

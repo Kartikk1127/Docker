@@ -104,6 +104,7 @@ Run: ```docker run <image-name>```
 1. _Stop a running container_ : ```docker stop <container id>```
 2. _Start a stopped container_ : ```docker start <container id>```
 3. _Restart a running container_ : ```docker restart <container id>```
+4. _Remove all the unnecessary containers_: ```docker system prune```
 
 **Important** : 
 Any code changes you make after creating a container will not be reflected inside the image and hence won't be visible when you run an old container or even restart/beat the shit out of it, it just won't work.
@@ -201,5 +202,20 @@ Till now, we have been doing a lot of manual work and running a lot of commands 
 8. There's no need to create a dockerfile now.
 9. **NOTE**: You must have noticed that I have added additional health checks in the file. This is because if the application started without the mysql being up, it'll break eventually.
 10. The docker compose file in this project depicts a flask app connected with mysql server.
+11. To stop and remove all containers, run: ```docker compose down```
+
+## Docker Registry
+1. Docker registry is a centralized system to store all our docker images that contain all the packages required to run our application. 
+2. This could also be hosted by Docker hub.
+3. So, if you want to push your image to docker hub, docker registry comes into picture.
+4. First step is to give a tag to your image.
+5. Run: ```docker image tag <your old image name> <docker username>/<new image name>```
+   1. _**docker image tag two-tier-flask-app-flask:latest kartikcodes/two-tier-backend:latest**_
+6. Now, run: ```docker push kartikcodes/two-tier-backend:latest```
+7. This way, you can push your image present locally to your docker hub.
+8. **Note**: You should be able to login to your docker account. Run: ```docker login``` to verify if you are logged in.
+9. Now, your docker compose file can be modified as well.
+10. OLD: ![img_8.png](img_8.png)
+11. NEW: ![img_10.png](img_10.png)
 
 
