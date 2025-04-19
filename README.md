@@ -10,10 +10,10 @@ instead of your raw application. Now, the client could easily run your applicati
 already has all the necessary dependencies required for your application to run.
 
 ## Docker Architecture
-1. Docker Engine : Also known as docker application container engine on top of which all the docker containers run.
-2. Docker Daemon : Or docker d is a service that manages your containers with shared memory. It also has a container d(a project written in Golang)
-3. Docker CLI : Command Line Interface which helps to run all the docker related commands. Basically, all the commands you write in cli are pushed to docker d which in turn asks the container d to execute the specific operation.
-4. Docker Client/Desktop : Connects the apis to help visualize all the docker containers in a UI. Helps in communicating with the docker engine.
+1. **Docker Engine** : Also known as docker application container engine on top of which all the docker containers run.
+2. **Docker Daemon** : Or docker d is a service that manages your containers with shared memory. It also has a container d(a project written in Golang)
+3. **Docker CLI** : Command Line Interface which helps to run all the docker related commands. Basically, all the commands you write in cli are pushed to docker d which in turn asks the container d to execute the specific operation.
+4. **Docker Client/Desktop** : Connects the apis to help visualize all the docker containers in a UI. Helps in communicating with the docker engine.
 
 ## Installing Docker
 1. You can download the docker desktop to run it locally on your machine. 
