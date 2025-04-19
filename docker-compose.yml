@@ -1,0 +1,52 @@
+version: "3.8" #version of the docker compose
+
+services: # you can define all the containers you want to run
+  mysql: #name of the service
+    container_name: mysql
+    image: mysql #no need to build, just define the name of the image which will be automatically be pulled from docker hub
+    environment: # just like docker run command, specify all the environments you require to run the mysql container
+      MYSQL_DATABASE: "devops"
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306" # since mysql runs on 3306
+    volumes:
+      - mysql-data:/var/lib/mysql # in order to avoid losing our data, we'll bind it with the volume.
+    networks:
+      - two-tier # exactly same what we gave in our run command.
+    restart: always # if the application's health check fails, it'll retry
+    healthcheck:
+      test: ["CMD","mysqladmin","ping",",-h","localhost","-uroot","-proot"] #health check
+
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  flask:
+    build:
+      context: . #since this is our own project, hence need to build
+    container_name: two-tier-backend
+    ports:
+      - "5000:5000" #runs on this port
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DB: "devops"
+    networks:
+      - two-tier
+    depends_on: # this is because we want the mysql server to be up before this gets deployed
+      - mysql
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+volumes:
+  mysql-data:
+
+networks:
+  two-tier:

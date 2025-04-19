@@ -75,6 +75,7 @@ When you run a container in detached mode, it does not block your screen. For in
 3. Now, building a custom image requires us to write a Dockerfile and here, writing a dockerfile involves a set of instructions to build a docker image.
 4. Just like for you cooking Maggi involves a set of steps like getting a container -> boiling water -> putting maggi and masala -> cook. Finally you'll be having cooked maggi.
 5. Similarly, by following a set of instructions in a dockerfile it'll help you in building an image of your application.
+6. I have added a sample dockerfile for reference.
 
 #### CMD VS ENTRYPOINT
 The CMD and ENTRYPOINT commands serve different purposes and have distinct behaviors.
@@ -188,5 +189,17 @@ Run: ```docker volume ls```
 13. There's another way to preserve your data by creating your own path and storing the mysql data there. 
 14. Just replace ```mysql-data``` in the docker run command above by the path of your own choice and you'll be good to go.
 
+## Docker Compose
+Till now, we have been doing a lot of manual work and running a lot of commands manually. Docker compose is a tool that helps in automating things for us. Let's understand how it works.
+1. This is yet another configuration file which is a **yml** or **yaml** file.
+2. This file helps in creating more than 1 container simultaneously.
+3. I have added a sample docker compose file in this project. 
+4. Install docker compose: ```sudo apt-get install docker-compose-v2```
+5. Now, inside the project's directory create a docker compose file.
+6. Now, run: ```docker compose up```
+7. That's it, docker compose will create 2 containers for you with the exact same configurations.
+8. There's no need to create a dockerfile now.
+9. **NOTE**: You must have noticed that I have added additional health checks in the file. This is because if the application started without the mysql being up, it'll break eventually.
+10. The docker compose file in this project depicts a flask app connected with mysql server.
 
 
