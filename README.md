@@ -105,6 +105,7 @@ Run: ```docker run <image-name>```
 2. _Start a stopped container_ : ```docker start <container id>```
 3. _Restart a running container_ : ```docker restart <container id>```
 4. _Remove all the unnecessary containers_: ```docker system prune```
+5. _Monitoring+: ```nohup docker attach <container id> &```
 
 **Important** : 
 Any code changes you make after creating a container will not be reflected inside the image and hence won't be visible when you run an old container or even restart/beat the shit out of it, it just won't work.
