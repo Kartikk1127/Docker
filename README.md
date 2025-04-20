@@ -1,4 +1,17 @@
-# Docker
+# Topics Covered:
+1. [What is Docker?](#docker)
+2. [Docker Architecture](#docker-architecture)
+3. [Docker installation](#installing-docker)
+4. [Writing your first dockerfile](#writing-a-dockerfile)
+5. [Building and running your first container.](#building-and-running-an-image)
+6. [Some useful commands](#important-commands)
+7. [Docker Networking](#docker-networking)
+8. [Docker Volumes and Storage](#docker-volumes-and-storage)
+9. [Docker Compose](#docker-compose)
+10. [Docker Registry](#docker-registry)
+11. [Multi Stage Docker build](#multi-stage-docker-build)
+
+## Docker
 What is docker?
 Imagine you are a person who wants to ship some application to a client. You put in a lot of efforts to build that 
 application and deployed it on your local machine. It works great. However, after shipping it to your client you get to 
