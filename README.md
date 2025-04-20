@@ -218,4 +218,20 @@ Till now, we have been doing a lot of manual work and running a lot of commands 
 10. OLD: ![img_8.png](img_8.png)
 11. NEW: ![img_10.png](img_10.png)
 
+## Multi Stage docker build
+1. The current repository has a sample Main class and a dockerfile.
+2. You can clone this project.
+3. Run: ```docker build -t sample-project .```
+4. Observe the built image with the ```docker images```.
+5. Take a look at the image size(without multi-stage):![img_9.png](img_9.png)
+6. That's a big image, approx: 470 mb.
+7. Think of it this way: you need a hammer to build a house, but once it's built, you don't need to carry the hammer around everywhere you go.
+8. Similarly, the java compiler is essential for building the application, but it's unnecessary baggage once the app is up and running. 
+9. Ideally, you want a minimal docker image that only contains the Java runtime adn nothing else.
+10. This also helps in avoiding any malicious attacks since there are fewer vulnerabilities.
+11. This brings us to the concept of _Multi Stage Docker Build_
+12. It involves two docker images working together to selectively copy only the essential parts of your application from one image to the other.
+13. Take a look at the image size using multi-stage docker build : ![img_11.png](img_11.png)
+14. As you can see, using multi-stage can help us reduce the size of the image to an extent. In some cases, you can exponentially decrease the size of the image using multi-stage docker build.
+15. A sample dockerfile following multi-stage docker build is added in the repo.
 
