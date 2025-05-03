@@ -65,3 +65,24 @@ _What happens_:
 1. They are just processes.
 2. Limited to what resources they can access.
 3. Exit when process stops.
+
+## Docker Networks Defaults
+1. Each container connected to a private virtual network "bridge".
+2. Each virtual network routes through NAT firewall on host IP.
+3. All containers on a virtual network can talk to each other without -p.
+4. Best practice is to create a new virtual network for each app:
+   1. network "my_web_app" for mysql and php/apache containers.
+   2. network "my_api" for mongo and nodejs containers.
+5. Create your apps so frontend/backend sit on same docker network.
+6. Their inter-communication never leaves host.
+7. All externally exposed ports closed by default.
+8. You must manually expose via -p, which is better default security.
+9. This gets even better later with Swarm and Overlay networks.
+
+## Docker Networks: How containers find each other?
+1. DNS is the key to easy inter-container comms.
+2. It works by default with custom networks.
+3. Use ```--link``` to enable DNS on default bridge network.
+
+### Static IP's and using IP's for talking to containers is an anti-pattern. Do your best to avoid it.
+1. Docker daemon has a built-in DNS server that containers use by default.
