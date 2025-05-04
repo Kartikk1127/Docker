@@ -94,7 +94,7 @@ _What happens_:
 4. Managing out local image cache.
 5. Building our own images.
 
-## What's in an image (and what isn't)
+### What's in an image (and what isn't)
 1. App binaries and dependencies.
 2. Metadata about the image data and how to run the image.
 3. Official definition: "An image  is an ordered collection of root filesystem changes and the corresponding execution parameters for use within a container runtime."
@@ -107,3 +107,10 @@ _What happens_:
 10. This saves storage space on host and transfer time on push/pull.
 11. A container is just a single read/write layer on top of image.
 12. docker image history and inspect commands can teach us.
+
+### All about image tags and pushing them to docker hub
+1. All about image tags.
+2. How to upload to docker hub?
+3. Image ID vs Tag.
+4. **Things that change the least should be kept at the start of the dockerfile and the things that change the most should be kept at the bottom of the dockerfile.**
+5. 
