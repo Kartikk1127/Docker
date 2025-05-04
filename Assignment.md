@@ -12,3 +12,15 @@
 1. Apache : ```docker run -d -p 8080:80 --name httpd httpd```
 2. Mysql : ```docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysql mysql```
 3. Nginx : ```docker run -d -p 80:80 --name nginx nginx```
+
+
+## Assignment 2
+1. Dockerfiles are part process workflow and part art.
+2. Take existing Node.js app and dockerize it.
+3. Make dockerfile. Build it. Test it. Push it. Rm it. Run it.
+4. Expect this to be iterative.
+5. Details in dockerfile-assignment-1/Dockerfile.
+6. Use the alpine version of the official 'node' 6.x image.
+7. Expected result is website at http://localhost
+8. Tag and push to your docker hub account.
+9. Remove your image from local cache, run again from hub.
