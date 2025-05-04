@@ -113,4 +113,20 @@ _What happens_:
 2. How to upload to docker hub?
 3. Image ID vs Tag.
 4. **Things that change the least should be kept at the start of the dockerfile and the things that change the most should be kept at the bottom of the dockerfile.**
-5. 
+
+## Persistent Data: Volumes
+1. Defining the problem of persistent data.
+2. Key concepts with containers: immutable, ephemeral.
+3. Learning and using Data volumes.
+4. Learning and using Bind Mounts.
+5. Assignments.
+
+### Container lifetime and Persistent Data
+1. Containers are usually immutable and ephemeral.
+2. Immutable infrastructure: only re-deploy containers, never change.
+3. This is the ideal scenario, but what about databases, or unique data?
+4. Docker gives us features to ensure these separation of concerns.
+5. This is known as "persistent data".
+6. Two ways: Volume and Bind mounts
+7. Volumes: make special location outside of container UFS.
+8. Bind Mounts: link container path to host path.
