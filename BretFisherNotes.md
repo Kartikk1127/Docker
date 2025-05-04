@@ -86,3 +86,24 @@ _What happens_:
 
 ### Static IP's and using IP's for talking to containers is an anti-pattern. Do your best to avoid it.
 1. Docker daemon has a built-in DNS server that containers use by default.
+
+## Container Images, Where to find them and how to build them?
+1. All about images, the building blocks of containers.
+2. [What's in an image (and what isn't)](#whats-in-an-image-and-what-isnt)
+3. Using docker hub registry.
+4. Managing out local image cache.
+5. Building our own images.
+
+## What's in an image (and what isn't)
+1. App binaries and dependencies.
+2. Metadata about the image data and how to run the image.
+3. Official definition: "An image  is an ordered collection of root filesystem changes and the corresponding execution parameters for use within a container runtime."
+4. Not a complete OS. No kernel, kernel modules (eg: drivers)
+5. Small as one file (your app binary) like a golang static binary.
+6. Big as an Ubuntu distro with apt, and Apache, PHP, and more installed.
+7. Alpine is just a distribution of an image that is very small.
+8. Images are made up of file system changes and metadata.
+9. Each layer is uniquely identified and only stored once on a host.
+10. This saves storage space on host and transfer time on push/pull.
+11. A container is just a single read/write layer on top of image.
+12. docker image history and inspect commands can teach us.
