@@ -130,3 +130,11 @@ _What happens_:
 6. Two ways: Volume and Bind mounts
 7. Volumes: make special location outside of container UFS.
 8. Bind Mounts: link container path to host path.
+
+### Bind Mounting
+1. Maps a host file or directory to a container file or directory.
+2. Basically just two locations pointing to the same file(s).
+3. Again, skips UFS, and host files overwrite any in container.
+4. Can't use in Dockerfile, must be at container run.
+5. ... run -v /Users/bret/stuff:/path/container (mac/linux)
+6. ... run -v //c/Users/bret/stuff:/path/container (windows).
