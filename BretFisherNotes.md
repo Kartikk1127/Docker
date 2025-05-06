@@ -138,3 +138,19 @@ _What happens_:
 4. Can't use in Dockerfile, must be at container run.
 5. ... run -v /Users/bret/stuff:/path/container (mac/linux)
 6. ... run -v //c/Users/bret/stuff:/path/container (windows).
+
+
+## Dockerfile ENTRYPOINT
+
+### Buildtime vs Runtime
+One thing to note is the CMD command written in dockerfile is stored as metadata in the image store and is executed only when you run the container. It is not executed while building the image.
+Thereby, CMD is a RUNTIME variable.  
+Opposite to this, the WORKDIR, COPY, RUN are the commands that are used while image building and hence are BUILDTIME variable.  
+To understand how dockerfiles affect the image and container, one should understand when different statements are used. Eg: Runtime statements don't affect the image build and are only image metadata until the container starts.  
+
+| BUILDTIME:: docker build                          |             BOTH:: build and run             |                          RUNTIME:: docker run                           |
+|:--------------------------------------------------|:--------------------------------------------:|:-----------------------------------------------------------------------:|
+| FROM<br/>ADD<br/>COPY<br/>RUN<br/>ARG<br/>ONBUILD | LABEL<br/>ENV<br/>USER<br/>SHELL<br/>WORKDIR | EXPOSE<br/>VOLUME<br/>STOPSIGNAL<br/>CMD<br/>ENTRYPOINT<br/>HEALTHCHECK |
+
+
+
