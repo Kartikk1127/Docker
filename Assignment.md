@@ -39,3 +39,13 @@
 1. ```docker volume create pgdata```
 2. ```docker container run -d --name postgres -e POSTGRES_HOST_AUTH_METHOD=trust -v pgdata:/var/lib/postgresql/data postgres:15.1```
 3. ```docker container run -d --name postgres2 -e POSTGRES_HOST_AUTH_METHOD=trust -v pgdata:/var/lib/postgresql/data postgres:15.2```
+
+
+## Assignment 4
+1. Use a Jekyll "Static Site Generator" to start a local web server.
+2. Don't have to be web developer: this is example of bridging the gap between local file access and apps running in containers.
+3. source code is in the course repo under bindmount-sample-1
+4. We edit files with editor on our host files and updates web server
+5. start container with ```docker run -p 80:4000 -v $(pwd):/site bretfisher/jekyll-serve```
+6. Refresh our browser to see changes.
+7. Change the file in _posts\ and refresh browser to see changes.
