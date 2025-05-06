@@ -24,3 +24,18 @@
 7. Expected result is website at http://localhost
 8. Tag and push to your docker hub account.
 9. Remove your image from local cache, run again from hub.
+
+
+## Assignment 3
+1. Database upgrade with containers.
+2. Create a postgres container with named volume psql-data using version 9.6.1
+3. Use Docker hub to learn VOLUME path and versions needed to run it.
+4. Check logs, stop container
+5. Create a new postgres container with same named volume using 9.6.2
+6. Check logs to validate.
+7. Note: This only works with patch versions, most SQL DB's require manual commands to upgrade DB's to major/minor versions, i/e/ it's a DB limitation not a container one.
+
+### Answers
+1. ```docker volume create pgdata```
+2. ```docker container run -d --name postgres -e POSTGRES_HOST_AUTH_METHOD=trust -v pgdata:/var/lib/postgresql/data postgres:15.1```
+3. ```docker container run -d --name postgres2 -e POSTGRES_HOST_AUTH_METHOD=trust -v pgdata:/var/lib/postgresql/data postgres:15.2```
