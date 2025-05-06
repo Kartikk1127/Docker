@@ -152,5 +152,21 @@ To understand how dockerfiles affect the image and container, one should underst
 |:--------------------------------------------------|:--------------------------------------------:|:-----------------------------------------------------------------------:|
 | FROM<br/>ADD<br/>COPY<br/>RUN<br/>ARG<br/>ONBUILD | LABEL<br/>ENV<br/>USER<br/>SHELL<br/>WORKDIR | EXPOSE<br/>VOLUME<br/>STOPSIGNAL<br/>CMD<br/>ENTRYPOINT<br/>HEALTHCHECK |
 
+1. **Buildtime** statements affect the files in the image or how the image is built.
+2. **Runtime** statements are typically stored as metadata and affect the container.
+3. Some statements affect how the image is built and also change container start behaviour.
+4. **Overwrite** statements replace any previous use.
+5. **Additive** statements add to any previous use.
+6. Know your base (FROM) images. Many statement types affect downstream images.
+7. Understanding these effects helps troubleshoot Dockerfile and container issues.
 
+_You can overwrite an Entrypoint using --entrypoint string. Eg:: ```docker run --entrypoint <command that overwrites> <container name>```_
+
+### Takeaways
+1. ENTRYPOINT executes a command on container start.
+2. ENTRYPOINT is a RUNTIME statement, stored as metadata with an image.
+3. Only the last ENTRYPOINT in a Dockerfile is used, making it an Overwrite type.
+4. A container needs at least a CMD or an ENTRYPOINT to know hwo to start.
+5. ENTRYPOINT requires more typing to overwrite compared to CMD, so it's rarely used by itself as a replacement for CMD.
+6. You can overwrite ENTRYPOINT with ```docker run --entrypoint "something" <image>```
 
