@@ -49,3 +49,8 @@
 5. start container with ```docker run -p 80:4000 -v $(pwd):/site bretfisher/jekyll-serve```
 6. Refresh our browser to see changes.
 7. Change the file in _posts\ and refresh browser to see changes.
+
+## Assignment 5 : Answers :
+src/docker/entrypoint/Dockerfile
+1. `docker build -t cmatrix .`
+2. `docker container run -it cmatrix sh`

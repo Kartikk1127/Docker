@@ -170,3 +170,32 @@ _You can overwrite an Entrypoint using --entrypoint string. Eg:: ```docker run -
 5. ENTRYPOINT requires more typing to overwrite compared to CMD, so it's rarely used by itself as a replacement for CMD.
 6. You can overwrite ENTRYPOINT with ```docker run --entrypoint "something" <image>```
 
+### Using ENTRYPOINT and CMD together
+Located at: "src/docker/Dockerfile"  
+**Basic Concepts** : Docker combines ENTRYPOINT and CMD into a single command when both are specified, enabling enhanced customization of container behavior.  
+**Use Cases** :  
+      1. Treating containers as command-line tools.  
+      2. Running startup scripts before executing the main application.  
+**Examples** :  
+      1. A curl command example that demonstrates creating an image mimicking native curl behavior.  
+      2. HTTPing utility is showcased to set preferred options and defaults.  
+**Signal Handling and PID 1** :  
+      1. Running a shell script as CMD can lead to signal handling issues which are crucial for graceful shutdowns.  
+      2. Importance of having the main application as the first process in the container for receiving shutdown signals.  
+**Using Exec in Scripts** :  
+The use of the exec command in shell scripts is emphasized to ensure that the main application receives signals correctly.  
+
+### Takeaways
+1. If both ENTRYPOINT and CMD are set, they combine into a single command for starting the container.
+2. For CLI tools, use ENTRYPOINT to set the base executable, while CMD should provide default arguments.
+3. CMD can be easily overridden at docker run without replacing the ENTRYPOINT.
+4. For pre-launch scripts, ENTRYPOINT should set the script, and CMD should set the final process.
+5. ENTRYPOINT shell scripts should use exec "$@" to pass execution (PID 1) to the CMD.
+
+### General Guidelines
+1. RUN : Use Shell by default.
+2. ENTRYPOINT : Always Exec, or CMD can't be used.
+3. CMD : Use Exec by default, but sometimes shell form is needed for shell features.
+4. ENTRYPOINT + CMD : Always use Exec to avoid weird edge cases.
+5. Shell form will inject `/bin/sh -c` at the beginning of the command.
+6. CMD statement can be preferred for starting long-lasting processes like web servers or databases.
