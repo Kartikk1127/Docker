@@ -20,4 +20,4 @@
 18. ```--network host``` : It gains performance by skipping virtual networks but sacrifices security of container model. It attaches the container directly to the host interface.
 19. ```docker image tag <source image> <target image>``` : Helps you in giving a custom tag to an image, which you can then push to dockerhub.
 20. ```docker push <image name with tag>``` : Will push the image to your dockerhub account.
-21. ```docker volume create``` : Required to do this before "docker run"  to use custom drivers and labels.
+21. ```docker volume create``` : Required  to do this before "docker run"  to use custom drivers and labels.
