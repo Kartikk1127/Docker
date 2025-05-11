@@ -199,3 +199,15 @@ The use of the exec command in shell scripts is emphasized to ensure that the ma
 4. ENTRYPOINT + CMD : Always use Exec to avoid weird edge cases.
 5. Shell form will inject `/bin/sh -c` at the beginning of the command.
 6. CMD statement can be preferred for starting long-lasting processes like web servers or databases.
+
+
+## Docker Compose
+1. Why: configure relationships between containers.
+2. Why: save our docker container run settings in easy to read file.
+3. Why: create one liner developer environment startups.
+4. Comprised of 2 separate but related things
+   1. YAML-formatted file that describes our solution options for:
+      1. containers
+      2. networks
+      3. volumes
+   2. A CLI tool docker-compose used for local dev/test automation with those YAML files.

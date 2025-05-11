@@ -97,7 +97,7 @@ The CMD and ENTRYPOINT commands serve different purposes and have distinct behav
 |:------------------------------------------|:-----------------------------------------:|
 | sets default parameters for the container | sets primary parameters for the container |
 | can be overridden                         |           cannot be overridden            |
-| used for default parameters                         |           used for the main executable command            |
+| used for default parameters               |   used for the main executable command    |
 
 ### Building a custom image
 Run : ```docker build -t <image-name> .``` 
