@@ -82,3 +82,14 @@ This script will perform a few actions before starting the FastAPI Python web AP
 - The most interesting URL for testing is the built-in docs of FastAPI at http://localhost:8000/docs
 - Python pip has a `--no-cache-dir` option to avoid caching the package index locally, so a command would look like `pip install --no-cache-dir -r requirements.txt`.
 - Checkout the `docker-entrypoint.sh` script for the startup tasks. It's a simple script that checks several common things like ensuring the `/app/data` directory exists and copying over any initial data files (which you might want to peak at, 😎).
+
+## Assignment 7
+1. Build a basic compose file for a Drupal content management system website.
+2. Use the `drupal` image along with the `postgres` image.
+3. Use ports to expose Drupal on 8080 so you can localhost:8080.
+4. Be sure to set POSTGRES_PASSWORD for postgres.
+5. Walk through Drupal setup via browser.
+6. Tip: Drupal assumes DB is localhost, but it is service name.
+7. Extra Credit: Use volumes to store Drupal unique data.
+
+### Answer: `src/docker/compose/docker-compose.yml`

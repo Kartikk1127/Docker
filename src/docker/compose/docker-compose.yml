@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  drupal:
+    image: drupal:9
+    ports:
+      - "8080:80"
+    networks:
+      - two-tier-test
+    restart: always
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:14
+    environment:
+      - POSTGRES_PASSWORD=root
+    ports:
+      - "5432:5432"
+    networks:
+      - two-tier-test
+    restart: always
+
+networks:
+  two-tier-test:
