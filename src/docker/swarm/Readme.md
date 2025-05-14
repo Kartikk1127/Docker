@@ -20,4 +20,23 @@
 4. The goal of the Swarm service is that it's able to replace containers and update changes in the service without taking the entire service down.
 5. If you had a service with 3 containers running in it, you could technically take down one at a time to make a change and do sort of a rolling update, which is the blue-green pattern.
 6. With a service having 3 containers running, if any of them goes down due to any reason, the service will automatically bring a new container up and running.
-7. 
+
+## Overlay Multi-Host Networking
+1. Just choose `--driver overlay` when creating network.
+2. For container-to-container traffic inside a single Swarm.
+3. Optional IPSec (AES) encryption on network creation.
+4. Each service can be connected to multiple networks(eg: frontend, backend)
+
+**Exercise:** After creating a 3 node cluster, run the following commands on any of the one nodes. You'll see a proper routing happening on all the nodes.
+1. `docker network create --driver overlay mydrupal`
+2. `docker service create --name psql --network mydrupal -r POSTGRES_PASSWORD=root postgres:14`
+3. `docker service create --name drupal -p 80:80 --network mydrupal drupal:9`
+
+## Creating a 3 node cluster.
+1. Open play-with-docker and start 3 instances OR  Use multipass.
+2. Run `docker swarm init` on node1.
+3. Run `docker swarm --join token <token>` on other nodes so they join the node1.
+4. node1 should be the **leader**
+5. node2 and node3 should be **manager**. If they are not, update their roles by executing `docker node update --role manager <node2/node3>`
+6. Now all nodes have joined a single swarm cluster.
+7. Now, whatever images you run(for instance you run a frontend and a backend service which should be connected), they will run inside a single cluster and hence a proper working system starts.
