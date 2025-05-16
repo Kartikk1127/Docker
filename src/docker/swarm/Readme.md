@@ -40,3 +40,12 @@
 5. node2 and node3 should be **manager**. If they are not, update their roles by executing `docker node update --role manager <node2/node3>`
 6. Now all nodes have joined a single swarm cluster.
 7. Now, whatever images you run(for instance you run a frontend and a backend service which should be connected), they will run inside a single cluster and hence a proper working system starts.
+
+## Scaling out with Routing Mesh
+1. Routes ingress(incoming) packets for a service to proper task.
+2. Spans all nodes in swarm.
+3. Uses IPVS from linux kernel.
+4. Load balances swarm services across their tasks.
+5. It works two ways:
+   1. Container to container in an Overlay network.(Uses VIP)
+   2. External traffic incoming to published ports.(all nodes listen)
