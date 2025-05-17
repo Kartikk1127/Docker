@@ -49,3 +49,11 @@
 5. It works two ways:
    1. Container to container in an Overlay network.(Uses VIP)
    2. External traffic incoming to published ports.(all nodes listen)
+6. This is stateless load balancing.
+7. This LB is at OSI layer 3 (TCP), not layer 4 (DNS).
+8. Both limitation can be overcome with:
+   1. Nginx or HAProxy LB
+   2. Docker Enterprise Edition, which comes with built-in L4 web proxy.
+9. The overlay network driver is used for container communication across a swarm.
+10. Containers and networks are many-to-many relationship. A single container can be attached to many networks.
+11. There is a load balancer in the overlay networking driver, and will distribute the incoming network connections automatically for you.
