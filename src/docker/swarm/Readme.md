@@ -58,4 +58,31 @@
 10. Containers and networks are many-to-many relationship. A single container can be attached to many networks.
 11. There is a load balancer in the overlay networking driver, and will distribute the incoming network connections automatically for you.
 12. Overlay network is the only network we could use in a swarm because overlay allows us to span across nodes, as if they're all on the local network.
-13. 
+
+## Stacks: Production Grade Compose
+1. In 1.13 Docker adds a new layer of abstraction to Swarm called Stacks.
+2. Stacks accept Compose files as their declarative definition for services, networks, and volumes.
+3. We use `docker stack deploy` rather than docker service create.
+4. Stacks manages all those objects for us, including overlay network per stack. Adds stack name to start of their name.
+5. New `deploy`: key in Compose file. Can't do `build`.
+6. Compose now ignores `deploy:`, Swarm ignores `build:`
+7. `docker-compose` cli not needed on Swarm server.
+
+## Secrets Storage
+1. Easiest "secure" solution for storing secrets in Swarm.
+2. What is a secret?
+   1. Usernames and passwords.
+   2. TLS certificates and keys.
+   3. SSH keys
+   4. Any data you would prefer not be "on front page of news".
+3. Supports generic strings or binary content up to 500Kb in size.
+4. Doesn't require apps to be rewritten.
+5. As of Docker 1.13.0 Swarm Raft DB is encrypted on disk.
+6. Only stored on disk on Manager nodes.
+7. Default is Managers and Workers "control plane" is TLS+Mutual Auth.
+8. Secrets are first stored in Swarm, then assigned to a service.
+9. Only containers in assigned Service can see them.
+10. They look like files in container but are actually in-memory fs
+    1. /run/secrets/<secret_name> or
+    2. /run/secrets/<secret_alias>
+11. Local docker-compose can use file-based secrets, but not secure.
