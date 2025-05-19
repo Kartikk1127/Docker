@@ -57,3 +57,5 @@
 9. The overlay network driver is used for container communication across a swarm.
 10. Containers and networks are many-to-many relationship. A single container can be attached to many networks.
 11. There is a load balancer in the overlay networking driver, and will distribute the incoming network connections automatically for you.
+12. Overlay network is the only network we could use in a swarm because overlay allows us to span across nodes, as if they're all on the local network.
+13. 
