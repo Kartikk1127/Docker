@@ -86,3 +86,22 @@
     1. /run/secrets/<secret_name> or
     2. /run/secrets/<secret_alias>
 11. Local docker-compose can use file-based secrets, but not secure.
+
+## Service Updates
+1. Provides rolling replacement of tasks/containers in a service.
+2. Limits downtime(be careful with "prevents" downtime).
+3. Will replace containers for most changes.
+4. Has many, many cli options to control the update.
+5. Create options will usually change, adding -add or -rm to them.
+6. Includes rollback and healthcheck options.
+7. Also has scale and rollback subcommand for quicker access.
+   1. `docker service scale web=4` and `docker service rollback web`
+8. A stack deploy, when pre-existing, will issue service updates.
+
+### Swarm update examples
+1. Just update the image used to a newer version.
+   1. `docekr service update --image myapp:1.2.1 <servicename>`
+2. Adding an environment variable and remove a port.
+   1. `docker service update --env-add NODE_ENV=production --publish-rm 8080`
+3. Change number of replicas of two services.
+   1. `docker service scale web=8 api=6`
