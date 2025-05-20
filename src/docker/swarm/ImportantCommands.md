@@ -19,3 +19,4 @@
 11. `docker service update --image nginx:1.13.6 web` : Will update the image of the above service at runtime.
 12. `docker service update --publish-rm 8081 --publish-add 9090:80 web` : Using this you can change the port of the above service at runtime.
 13. `docker service update --force <service name>` : Force updates a service.
+14. `--health-cmd="pg_isready -U postgres || exit 1"` : Health command for postgres

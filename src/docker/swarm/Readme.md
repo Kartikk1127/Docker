@@ -105,3 +105,17 @@
    1. `docker service update --env-add NODE_ENV=production --publish-rm 8080`
 3. Change number of replicas of two services.
    1. `docker service scale web=8 api=6`
+
+## Docker HealthChecks
+1. HEALTHCHECK was added in 1.12.
+2. Supported in Dockerfile, Compose YAML, docker run, and Swarm Services.
+3. Docker engine will exec's the command in the container(eg: curl localhost).
+4. It expects exit 0(OK) or exit 1(Error).
+5. Three container states: _starting, healthy, unhealthy_.
+6. Much better than "is binary still running?"
+7. Not an external monitoring replacement.
+8. Healthcheck status shows up in `docker container ls`.
+9. Check last 5 healthchecks with `docker container inspect`.
+10. Docker run does nothing with healthchecks.
+11. Services will replace tasks if they fail healthcheck.
+12. Services updates wait for them before continuing.
