@@ -30,3 +30,12 @@
    8. `apk update && apk add socat`
    9. `apk add curl`
    10. `socat TCP-LISTEN:8081,fork TCP:192.168.100.2:5001`
+
+## Create Stack with Secrets
+1. Let's use our Drupal compose file from last assignment(compose-assignment-2).
+2. Rename image back to official `drupal:8.2`
+3. Remove `build:`
+4. Add secret via `external:`
+5. Use environment variable `POSTGRES_PASSWORD_FILE`
+6. Add secret via cli `echo "<pwd>" | docker secret create psql-pw -`
+7. Copy compose into a new yml file on your Swarm Node1.
