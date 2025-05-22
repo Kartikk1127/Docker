@@ -119,3 +119,45 @@
 10. Docker run does nothing with healthchecks.
 11. Services will replace tasks if they fail healthcheck.
 12. Services updates wait for them before continuing.
+
+## Container Registries: Image Storage and Distribution
+1. An image registry needs to part of your container plan.
+2. How is Docker Store (store.docker.com) different from Hub.
+3. How is Docker Cloud (cloud.docker.com) different from Hub.
+4. Use new Swarms feature in Cloud to connect Mac/Win to Swarm.
+5. Install and use Docker Registry as private image store.
+6. 3rd party registry options.
+
+### Docker Hub: Digging Deeper
+1. The most popular public image registry.
+2. It's really Docker Registry plus lightweight image building.
+3. Let's explore more of the features of Docker Hub.
+4. Link GitHub/BitBucket to Hub and auto-build images on commit.
+5. Chain image building together.
+
+### Running Docker Registry
+1. A private image registry for your network.
+2. Part of the docker/distribution GitHub Repo.
+3. The de facto in private container registries.
+4. Not as full-featured as Hub or others, no web UI, basic auth only.
+5. At its core: a web API and storage system, written in Go.
+6. Storage supports local, S3/Azure/Alibaba/Google Cloud, and OpenStack Swift.
+
+### Run a private Docker Registry Recap
+1. Run the registry image: `docker container run -d -p 5000:5000 --name registry registry`
+2. Re-tag an existing image and push it to your new registry: 
+   1. `docker tag hello-world 127.0.0.1:5000/hello-world`
+   2. `docker push 127.0.0.1:5000/hello-world`
+3. Remove that image from local cache and pull it from new registry
+   1. `docker image remove hello-world`
+   2. `docker image remove 127.0.0.1:5000/hello-world`
+   3. `docker pull 127.0.0.1:5000/hello-world`
+4. Re-create registry using a bind mount and see how it stores data
+   1. `docker container run -d -p 5000:5000 --name registry -v $(pwd)/registry-data:/var/lib/registry registry`
+
+### Private docker registry with swarm
+1. Works the same way as localhost.
+2. Because of routing mesh, all nodes can see 127.0.0.1:5000
+3. Remember to decide how to store images(volume driver)
+4. Note: All nodes must be able to access images.
+5. Pro-tip: Use a hosted saas registry if possible.
